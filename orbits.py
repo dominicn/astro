@@ -1,5 +1,7 @@
 # Functions for computing properties of orbits or
 # the effects of delta-v on orbits using the Kepler model.
+# Class representing an orbit (irrespective of time) using the classical
+# orbital elements.
 
 import math
 import consts
@@ -38,9 +40,9 @@ class Orbit:
 		W_vec = np.array([0, 0, 1])
 		W_vec = math_ext.rotate_about_x_axis(W_vec, -i)
 		if not math.isnan(OMEGA):
-			# if inclination is zero or pi then the orbital plane is the equatorial
+			# If inclination is zero or pi then the orbital plane is the equatorial
 			# plane, W = K and we have nothing to do here, which is handy because
-			# OMEGA will be NaN
+			# OMEGA will be NaN.
 			W_vec = math_ext.rotate_about_z_axis(W_vec, -OMEGA)
 		
 		# P is a unit vector in the direction of periapsis, i.e. it is a unit
@@ -58,7 +60,7 @@ class Orbit:
 			if not math.isnan(OMEGA):
 				P_vec = math_ext.rotate_about_z_axis(P_vec, -OMEGA)
 				
-		# Q is perpendicular to both P and W
+		# Q is perpendicular to both P and W.
 		Q_vec = P_vec * W_vec
 		
 		self.P_vec = P_vec
