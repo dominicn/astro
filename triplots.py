@@ -9,15 +9,15 @@ import numpy as np
 def new_triplot():
 	fig = plt.figure()
 
-	xy = plt.subplot(223)
+	xy = plt.subplot(223, aspect=1)
 	xy.set_xlabel('x')
-	xy.set_ylabel('y', rotation=0)
+	xy.set_ylabel('y', rotation=0, labelpad=15)
 	
-	zy = plt.subplot(224, sharey=xy)
+	zy = plt.subplot(224, sharey=xy, aspect=1)
 	zy.get_yaxis().set_visible(False)
 	zy.set_xlabel('z')
 
-	xz = plt.subplot(221, sharex=xy)
+	xz = plt.subplot(221, sharex=xy, aspect=1)
 	xz.get_xaxis().set_visible(False)
 	xz.set_ylabel('z', rotation=0, labelpad=15)
 
