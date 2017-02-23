@@ -61,7 +61,7 @@ class Orbit:
 				P_vec = math_ext.rotate_about_z_axis(P_vec, -OMEGA)
 				
 		# Q is perpendicular to both P and W.
-		Q_vec = P_vec * W_vec
+		Q_vec = np.cross(P_vec, W_vec)
 		
 		self.P_vec = P_vec
 		self.Q_vec = Q_vec
@@ -104,7 +104,19 @@ class Orbit:
 		
 	# nu is the angle from periapsis
 	def get_r_vec(self, nu):
-		r = get_r(nu)
+		r = self.get_r(nu)
+		return (
+			r * math.cos(nu) * self.P_vec
+			+ r * math.sin(nu) * self.Q_vec
+			)
+			
+	def get_rs(self, from_nu=0.0, to_nu=math.pi*2, samples=100):
+		result = []
+		for i in range(0, samples):
+			nu = (from_nu - to_nu) / (samples - 1) * i
+			r_vec = self.get_r_vec(nu)
+			result.append(r_vec)
+		return result
 		
 	@classmethod
 	def from_r_v_mu(cls, r_vec, v_vec, mu):
@@ -151,4 +163,3 @@ class Orbit:
 		 		PI = math.nan
 
 		return cls(mu, p, e, i, OMEGA, PI)
-
