@@ -9,15 +9,15 @@ import numpy as np
 def new_triplot():
 	fig = plt.figure()
 
-	xy = plt.subplot(223, aspect=1)
+	xy = plt.subplot(223)
 	xy.set_xlabel('x')
 	xy.set_ylabel('y', rotation=0, labelpad=15)
 	
-	zy = plt.subplot(224, sharey=xy, aspect=1)
+	zy = plt.subplot(224, sharey=xy)
 	zy.get_yaxis().set_visible(False)
 	zy.set_xlabel('z')
 
-	xz = plt.subplot(221, sharex=xy, aspect=1)
+	xz = plt.subplot(221, sharex=xy)
 	xz.get_xaxis().set_visible(False)
 	xz.set_ylabel('z', rotation=0, labelpad=15)
 
@@ -30,19 +30,16 @@ def new_triplot():
 		(xz, 0, 2)
 		)
 
-def plot_curve(trajectory, colour, time_samples=4):
+def plot_path(path, colour, time_samples=4):
 	global _curr_axes
-	def slice_trajectory(idx):
-		print("slice_trajectory(%d) =" % idx)
-		result = list(map(lambda p: p[idx], trajectory))
-		print(str(result))
-		return result
+	def slice(idx):
+		return list(map(lambda p: p[idx], path))
 	for axes, x_idx, y_idx in _curr_axes:
-		axes.plot(slice_trajectory(x_idx), slice_trajectory(y_idx), colour)
+		axes.plot(slice(x_idx), slice(y_idx), colour)
 
 if __name__ == "__main__":
 	new_triplot()
-	plot_curve([
+	plot_path([
 		np.array([0.0, 0, 0]),
 		np.array([0.1, 1, 0]),
 		np.array([0.3, 2, 0]),

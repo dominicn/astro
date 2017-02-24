@@ -105,12 +105,10 @@ class Orbit:
 	# nu is the angle from periapsis
 	def get_r_vec(self, nu):
 		r = self.get_r(nu)
-		r_vec = (
+		return (
 			r * math.cos(nu) * self.P_vec
 			+ r * math.sin(nu) * self.Q_vec
 			)
-		print("nu={0} r={1} r_vec={2}".format(nu, r, r_vec))
-		return r_vec
 			
 	def get_r_vecs(self, from_nu=0.0, to_nu=math.pi*2, samples=100):
 		result = []
