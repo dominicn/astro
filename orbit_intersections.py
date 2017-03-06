@@ -119,16 +119,17 @@ def get_intersections(p1, e1, p2, e2, k):
 
 	return intersections
 		
-fig = plt.figure()
-plt.axes().set_aspect('equal', 'datalim')
-draw_conic_section(2, 0.5, 0, 100, 'r')
-draw_conic_section(3.5, 0.9, math.pi / 3, 100, 'g')
-#label_point(0, 0)
+if __name__ == "__main__":
+	fig = plt.figure()
+	plt.axes().set_aspect('equal', 'datalim')
+	draw_conic_section(2, 0.5, 0, 100, 'r')
+	draw_conic_section(3.5, 0.9, math.pi / 3, 100, 'g')
+	#label_point(0, 0)
 
-intersections = get_intersections(2, 0.5, 3.5, 0.9, math.pi / 3)
-for (theta, r) in intersections:
-	print("Intersection at r={0}, theta={1}".format(r, theta))
-	label_point(r, theta)
+	intersections = get_intersections(2, 0.5, 3.5, 0.9, math.pi / 3)
+	for (theta, r) in intersections:
+		print("Intersection at r={0}, theta={1}".format(r, theta))
+		label_point(r, theta)
 	
-plt.show()	
+	plt.show()
 

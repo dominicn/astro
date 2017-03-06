@@ -36,6 +36,17 @@ def plot_path(path, colour, time_samples=4):
 		return list(map(lambda p: p[idx], path))
 	for axes, x_idx, y_idx in _curr_axes:
 		axes.plot(slice(x_idx), slice(y_idx), colour)
+		
+def label_point(pos, label, colour):
+	global _curr_axes
+	for axes, x_idx, y_idx in _curr_axes:
+		axes.plot(pos[x_idx], pos[y_idx], colour + 'o')
+		axes.annotate(
+			label,
+			xy=(pos[x_idx], pos[y_idx]),
+			textcoords='offset points',
+			xytext=(4, 4)
+			)
 
 if __name__ == "__main__":
 	new_triplot()
@@ -48,5 +59,6 @@ if __name__ == "__main__":
 		np.array([0.6, 5, 0]),
 		np.array([1.0, 6, 0])
 		], 'b')
+	label_point(np.array([1.0, 6, 0]), 'end', 'k')
 	show()
 

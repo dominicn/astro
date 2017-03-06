@@ -6,6 +6,7 @@
 import math
 import consts
 import math_ext
+import orbit_intersections
 import numpy as np
 
 def get_period_elliptical_orbit(a, M):
@@ -77,7 +78,7 @@ class Orbit:
 	
 	def is_coplanar(self, other):
 		# Inclination must be the same.
-		if math.fabs(self.i, other.i) > 0.0000001:
+		if math.fabs(self.i - other.i) > 0.0000001:
 			return False
 		
 		# If both orbits are equatorial then we don't need to compare the
@@ -85,7 +86,7 @@ class Orbit:
 		# Better to do this check first though, because if one is equatorial
 		# and the other near as dammit we'll count them as coplanar, though
 		# a comparisons of the OMEGA values would find one nan and the other not.
-		if math.min(math.fabs(self.OMEGA), math.fabs(other.OMEGA)) < 0.0000001:
+		if min(math.fabs(self.i), math.fabs(other.i)) < 0.0000001:
 			return True
 			
 		# Inclination is the same, and it's far enough from equatorial that
@@ -93,7 +94,7 @@ class Orbit:
 		# longitude of the *ascending* node. If the two OMEGAs are on opposite
 		# sides of the orbited body (i.e. separated by pi) then the orbits are
 		# coplanar, just in opposing directions.
-		if (math.fabs(self.OMEGA, other.OMEGA) % math.pi) > 0.0000001:
+		if (math.fabs(self.OMEGA - other.OMEGA) % math.pi) > 0.0000001:
 			return False
 			
 		return True
@@ -103,7 +104,19 @@ class Orbit:
 			# TODO support non-coplanar orbits, it's actually much easier
 			return []
 		
-		return
+		if math.isnan(self.PI) and math.isnan(other.PI):
+			# Two coplanar circular orbits either intersect everywhere (because
+			# they are the same orbit) or nowhere. Finding points of intersection
+			# isn't something we can do either way.
+			return []
+			
+		k = other.PI - self.PI
+		return orbit_intersections.get_intersections(
+			self.p,
+			self.e,
+			other.p,
+			other.e,
+			k)
 		
 	# nu is the angle from periapsis
 	def get_r(self, nu):

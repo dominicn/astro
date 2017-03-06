@@ -1,6 +1,6 @@
 import numpy as np
 import math
-from triplots import new_triplot, plot_path, show
+from triplots import new_triplot, plot_path, label_point, show
 from orbits import Orbit
 
 orbits = [
@@ -24,6 +24,10 @@ for i in range(0, len(orbits)):
 	colour = colours[i % len(colours)]
 	plot_path(path, colour)
 
+for nu, r in orbits[0].get_intersections(orbits[1]):
+	r_vec = orbits[0].get_r_vec(nu)
+	print("intersection at nu={0}, r={1}, r_vec={2}".format(nu, r, r_vec))
+	label_point(r_vec, "intersection", 'k')
 
 show()
 
