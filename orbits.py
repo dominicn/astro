@@ -97,6 +97,13 @@ class Orbit:
 			return False
 			
 		return True
+	
+	def get_intersections(self, other):
+		if not self.is_coplanar(other):
+			# TODO support non-coplanar orbits, it's actually much easier
+			return []
+		
+		return
 		
 	# nu is the angle from periapsis
 	def get_r(self, nu):

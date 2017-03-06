@@ -15,6 +15,7 @@ orbits = [
 	]
 
 new_triplot()	
+
 colours = ['r', 'g', 'b']
 for i in range(0, len(orbits)):
 	orbit = orbits[i]
@@ -22,5 +23,7 @@ for i in range(0, len(orbits)):
 	path = orbit.get_r_vecs()
 	colour = colours[i % len(colours)]
 	plot_path(path, colour)
+
+
 show()
 

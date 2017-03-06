@@ -92,63 +92,63 @@ class TestOrbits(unittest.TestCase):
 			1,
 			"Orbit(mu=1, p=4, e=2.22e-16, i=0.7854, OMEGA=0, PI=0)")
 			
-	def test_equatorial_eccentric_direct_orbit_apoapsis_at_i(self):
+	def test_equatorial_eccentric_direct_orbit_periapsis_at_i(self):
 		self.from_r_v_mu_test(
 			np.array([4, 0, 0]),
 			np.array([0, 1, 0]),
 			1,
 			"Orbit(mu=1, p=16, e=3, i=0, OMEGA=nan, PI=0)")
 			
-	def test_equatorial_eccentric_direct_orbit_apoapsis_at_j(self):
+	def test_equatorial_eccentric_direct_orbit_periapsis_at_j(self):
 		self.from_r_v_mu_test(
 			np.array([0, 4, 0]),
 			np.array([-1, 0, 0]),
 			1,
 			"Orbit(mu=1, p=16, e=3, i=0, OMEGA=nan, PI=1.571)")
 			
-	def test_equatorial_eccentric_retrograde_orbit_apoapsis_at_i(self):
+	def test_equatorial_eccentric_retrograde_orbit_periapsis_at_i(self):
 		self.from_r_v_mu_test(
 			np.array([4, 0, 0]),
 			np.array([0, -1, 0]),
 			1,
 			"Orbit(mu=1, p=16, e=3, i=3.142, OMEGA=nan, PI=0)")
 			
-	def test_equatorial_eccentric_retrograde_orbit_apoapsis_at_j(self):
+	def test_equatorial_eccentric_retrograde_orbit_periapsis_at_j(self):
 		self.from_r_v_mu_test(
 			np.array([0, 4, 0]),
 			np.array([1, 0, 0]),
 			1,
 			"Orbit(mu=1, p=16, e=3, i=3.142, OMEGA=nan, PI=1.571)")
 			
-	def test_polar_eccentric_orbit_apoapsis_at_i_ascending_at_i(self):
+	def test_polar_eccentric_orbit_periapsis_at_i_ascending_at_i(self):
 		self.from_r_v_mu_test(
 			np.array([4, 0, 0]),
 			np.array([0, 0, 1]),
 			1,
 			"Orbit(mu=1, p=16, e=3, i=1.571, OMEGA=0, PI=0)")
 			
-	def test_polar_eccentric_orbit_apoapsis_at_k_ascending_at_i(self):
+	def test_polar_eccentric_orbit_periapsis_at_k_ascending_at_i(self):
 		self.from_r_v_mu_test(
 			np.array([0, 0, 4]),
 			np.array([-1, 0, 0]),
 			1,
 			"Orbit(mu=1, p=16, e=3, i=1.571, OMEGA=0, PI=1.571)")
 
-	def test_polar_eccentric_orbit_apoapsis_at_i_descending_at_i(self):
+	def test_polar_eccentric_orbit_periapsis_at_i_descending_at_i(self):
 		self.from_r_v_mu_test(
 			np.array([4, 0, 0]),
 			np.array([0, 0, -1]),
 			1,
 			"Orbit(mu=1, p=16, e=3, i=1.571, OMEGA=3.142, PI=6.283)")
 			
-	def test_polar_eccentric_orbit_apoapsis_at_k_descending_at_i(self):
+	def test_polar_eccentric_orbit_periapsis_at_k_descending_at_i(self):
 		self.from_r_v_mu_test(
 			np.array([0, 0, 4]),
 			np.array([1, 0, 0]),
 			1,
 			"Orbit(mu=1, p=16, e=3, i=1.571, OMEGA=3.142, PI=4.712)")
 
-	def test_inclined_eccentric_orbit_apoapsis_at_kj_ascending_at_i(self):
+	def test_inclined_eccentric_orbit_periapsis_at_kj_ascending_at_i(self):
 		self.from_r_v_mu_test(
 			# apoapsis at radius 4 but in kj direction
 			np.array([0, math.sqrt(8), math.sqrt(8)]),
@@ -156,7 +156,7 @@ class TestOrbits(unittest.TestCase):
 			1,
 			"Orbit(mu=1, p=16, e=3, i=0.7854, OMEGA=0, PI=1.571)")
 			
-	def test_inclined_eccentric_orbit_apoapsis_at_kmi_ascending_at_j(self):
+	def test_inclined_eccentric_orbit_periapsis_at_kmi_ascending_at_j(self):
 		self.from_r_v_mu_test(
 			# apoapsis at radius 4 but in k, -i direction
 			np.array([-math.sqrt(8), 0, math.sqrt(8)]),
@@ -178,5 +178,4 @@ class TestOrbits(unittest.TestCase):
 			2,
 			"Orbit(mu=2, p=471.7, e=76.14, i=1.879, OMEGA=3.547, PI=9.265)")
 	
-unittest.main(verbosity=2
-
+unittest.main(verbosity=2)
