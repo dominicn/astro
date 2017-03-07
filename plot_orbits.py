@@ -24,8 +24,8 @@ for i in range(0, len(orbits)):
 	colour = colours[i % len(colours)]
 	plot_path(path, colour)
 
-for nu, r in orbits[0].get_intersections(orbits[1]):
-	r_vec = orbits[0].get_r_vec(nu)
+for nu, r in orbits[1].get_intersections(orbits[0]):
+	r_vec = orbits[1].get_r_vec(nu)
 	print("intersection at nu={0}, r={1}, r_vec={2}".format(nu, r, r_vec))
 	label_point(r_vec, "intersection", 'k')
 

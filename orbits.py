@@ -110,7 +110,19 @@ class Orbit:
 			# isn't something we can do either way.
 			return []
 			
-		k = other.PI - self.PI
+		if math.isnan(other.PI):
+			# If the other orbit is circular then any value of k would give us
+			# the same answer. Might as well choose zero.
+			k = 0
+		elif math.isnan(self.PI):
+			# If this orbit is circular, we still want to know the rotation of
+			# the other orbit relative to the point where we're measuring angles
+			# from so that the intersection angles we return (which are relative
+			# to this orbit) are correct.
+			k = other.PI
+		else:
+			k = other.PI - self.PI
+			
 		return orbit_intersections.get_intersections(
 			self.p,
 			self.e,
